@@ -1,0 +1,10 @@
+node_modules/
+.env
+package-lock.json
+.vscode/
+logfile
+build/
+.husky/
+.DS_Store
+.idea/
+https:/
