@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const { Router } = require("express");
+const timetableRoute = require("./timetable.routes");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const indexRouter = Router();
 
-module.exports = router;
+// create and fetch applicant route
+indexRouter.use("/timetable", timetableRoute);
+
+module.exports = indexRouter;
