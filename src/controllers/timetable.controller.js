@@ -1,4 +1,4 @@
-const { HttpResponse, generateClingoTimetableProgram } = require("../helpers");
+const { HttpResponse, generateClingoCode } = require("../helpers");
 const fs = require("fs");
 const path = require("path");
 
@@ -25,7 +25,7 @@ class TimetableGen {
 
       // const filePath = `../outputs/${data.time_table_name}.lp`;
 
-      const program = generateClingoTimetableProgram(data);
+      const program = generateClingoCode(data);
 
       // Write Clingo program to a file inside the output folder
       const clingoFilePath = path.join(
@@ -35,10 +35,8 @@ class TimetableGen {
 
       fs.writeFileSync(clingoFilePath, program);
 
-      console.log(`Clingo program written to ${clingoFilePath}`);
-
       http.setSuccess(200, "Timetable Generated Successfully", {
-        // admissionForms,
+        data: program,
       });
 
       return http.send(res);
