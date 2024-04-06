@@ -35,11 +35,17 @@ class TimetableGen {
 
       fs.writeFileSync(clingoFilePath, program);
 
-      http.setSuccess(200, "Timetable Generated Successfully", {
-        data: program,
+      await res.download(clingoFilePath, "timetable.lp", (error) => {
+        if (error) {
+          throw new Error(error.message);
+        }
       });
 
-      return http.send(res);
+      // http.setSuccess(200, "Timetable Generated Successfully", {
+      //   data: program,
+      // });
+
+      // return http.send(res);
     } catch (error) {
       http.setError(400, "Unable To Fetch Admission Forms", {
         error: error.message,
