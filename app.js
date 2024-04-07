@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
+const helmet = require("helmet");
 
 const indexRouter = require("./src/routes");
 
@@ -15,6 +17,9 @@ app.set("view engine", "jade");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(helmet());
+app.use(cors());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
