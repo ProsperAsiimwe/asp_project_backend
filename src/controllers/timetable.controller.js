@@ -23,8 +23,6 @@ class TimetableGen {
         fs.mkdirSync(outputFolder, { recursive: true });
       }
 
-      // const filePath = `../outputs/${data.time_table_name}.lp`;
-
       const program = generateClingoCode(data);
 
       // Write Clingo program to a file inside the output folder
@@ -40,14 +38,8 @@ class TimetableGen {
           throw new Error(error.message);
         }
       });
-
-      // http.setSuccess(200, "Timetable Generated Successfully", {
-      //   data: program,
-      // });
-
-      // return http.send(res);
     } catch (error) {
-      http.setError(400, "Unable To Fetch Admission Forms", {
+      http.setError(400, "Unable To Create Timetable", {
         error: error.message,
       });
 
