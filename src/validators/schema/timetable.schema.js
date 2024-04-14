@@ -4,7 +4,6 @@ const courseList = Joi.object().keys({
   name: Joi.string().required(),
   maxStudents: Joi.number().required(),
   teachers: Joi.array().items(Joi.string()).required(),
-  timeSlots: Joi.number().required(),
 });
 
 const teacherList = Joi.object().keys({
