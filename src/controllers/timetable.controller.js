@@ -25,19 +25,25 @@ class TimetableGen {
 
       const program = generateClingoCode(data);
 
-      // Write Clingo program to a file inside the output folder
-      const clingoFilePath = path.join(
-        outputFolder,
-        `${data.time_table_name.replace(/ /g, "_")}.lp`
-      );
+      // // Write Clingo program to a file inside the output folder
+      // const clingoFilePath = path.join(
+      //   outputFolder,
+      //   `${data.time_table_name.replace(/ /g, "_")}.lp`
+      // );
 
-      fs.writeFileSync(clingoFilePath, program);
+      // fs.writeFileSync(clingoFilePath, program);
 
-      await res.download(clingoFilePath, "timetable.lp", (error) => {
-        if (error) {
-          throw new Error(error.message);
-        }
+      // await res.download(clingoFilePath, "timetable.lp", (error) => {
+      //   if (error) {
+      //     throw new Error(error.message);
+      //   }
+      // });
+
+      http.setSuccess(200, "Timetable Generated Successfully", {
+        data: program,
       });
+
+      return http.send(res);
     } catch (error) {
       http.setError(400, "Unable To Create Timetable", {
         error: error.message,
